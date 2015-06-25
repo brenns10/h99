@@ -55,7 +55,7 @@ myReverse' l = myReverse_cps l id
 myReverse'' :: [a] -> [a]
 myReverse'' = foldl (\acc x -> x:acc) []
 
--- Problem 6:
+-- Problem 6: Find out whether a list is a palindrome.
 --- Solution 1: A somewhat lengthy one that tests pairs.  Not very good.
 isPalindrome :: (Eq a) => [a] -> Bool
 isPalindrome [] = True

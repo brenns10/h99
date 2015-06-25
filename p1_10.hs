@@ -51,6 +51,6 @@ myReverse' :: [a] -> [a]
 myReverse' l = myReverse_cps l id
     where myReverse_cps [] ret = ret []
           myReverse_cps (x:xs) ret = myReverse_cps xs (\v -> ret (v ++ [x]))
---- Solution 3: foldr cons
+--- Solution 3: fold cons
 myReverse'' :: [a] -> [a]
-myReverse'' = foldr (\x acc -> x:acc) []
+myReverse'' = foldl (\acc x -> x:acc) []

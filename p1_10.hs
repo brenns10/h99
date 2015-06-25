@@ -89,3 +89,7 @@ pack :: (Eq a) => [a] -> [[a]]
 pack [] = []
 pack l = bin:pack rem
     where (bin,rem) = span (== head l) l
+
+-- Problem 10: Run-length encoding.
+encode :: (Eq b) => [b] -> [(Int,b)]
+encode l = map (\x -> (length x, head x)) (pack l)

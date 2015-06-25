@@ -40,3 +40,17 @@ myLength'' = sum . map (\_ -> 1)
 --- Solution 4: fold
 myLength''' :: [a] -> Int
 myLength''' = foldl (\acc _ -> acc + 1) 0
+
+-- Problem 5: Reverse a list.
+--- Solution 1: Naive
+myReverse :: [a] -> [a]
+myReverse [] = []
+myReverse (x:xs) = (myReverse xs) ++ [x]
+--- Solution 2: Continuation (mostly just for fun from Scheme)
+myReverse' :: [a] -> [a]
+myReverse' l = myReverse_cps l id
+    where myReverse_cps [] ret = ret []
+          myReverse_cps (x:xs) ret = myReverse_cps xs (\v -> ret (v ++ [x]))
+--- Solution 3: foldr cons
+myReverse'' :: [a] -> [a]
+myReverse'' = foldr (\x acc -> x:acc) []

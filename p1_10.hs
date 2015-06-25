@@ -27,3 +27,16 @@ elementAt _ x
 elementAt [] _ = error "index out of range"
 elementAt (x:_) 1 = x
 elementAt (x:xs) n = elementAt xs (n - 1)
+
+-- Problem 4: Find the number of elements in a list.
+--- Solution 1: expected recursive function
+myLength :: [a] -> Int
+myLength [] = 0
+myLength (_:xs) = 1 + myLength xs
+--- Solution 2: sum of list comprehension
+myLength' l = sum [1 | _ <- l]
+--- Solution 3: sum of mapping
+myLength'' = sum . map (\_ -> 1)
+--- Solution 4: fold
+myLength''' :: [a] -> Int
+myLength''' = foldl (\acc _ -> acc + 1) 0

@@ -75,3 +75,11 @@ flatten :: NestedList a -> [a]
 flatten (Elem x) = [x]
 flatten (List []) = []
 flatten (List (x:xs)) = flatten x ++ flatten (List xs)
+
+-- Problem 8: Eliminate consecutive duplicates.
+compress :: (Eq a) => [a] -> [a]
+compress [] = []
+compress [x] = [x]
+compress (x:y:xs)
+    | x == y = compress (x:xs)
+    | otherwise = x:compress (y:xs)

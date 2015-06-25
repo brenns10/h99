@@ -83,3 +83,9 @@ compress [x] = [x]
 compress (x:y:xs)
     | x == y = compress (x:xs)
     | otherwise = x:compress (y:xs)
+
+-- Problem 9: Pack consecutive duplicates into sublists.
+pack :: (Eq a) => [a] -> [[a]]
+pack [] = []
+pack l = bin:pack rem
+    where (bin,rem) = span (== head l) l

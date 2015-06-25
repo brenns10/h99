@@ -18,3 +18,12 @@ myButLast [x,y] = x
 myButLast (_:xs) = myButLast xs
 --- Solution 2: by chaining (inspired by similar solution for Problem 1)
 myButLast' = head . tail . reverse
+
+
+-- Problem 3: Find the kth element of a list (indexed starting at 1).
+elementAt :: (Integral a) => [b] -> a -> b
+elementAt _ x
+    | x <= 0 = error "negative index"
+elementAt [] _ = error "index out of range"
+elementAt (x:_) 1 = x
+elementAt (x:xs) n = elementAt xs (n - 1)

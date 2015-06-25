@@ -54,3 +54,17 @@ myReverse' l = myReverse_cps l id
 --- Solution 3: fold cons
 myReverse'' :: [a] -> [a]
 myReverse'' = foldl (\acc x -> x:acc) []
+
+-- Problem 6:
+--- Solution 1: A somewhat lengthy one that tests pairs.  Not very good.
+isPalindrome :: (Eq a) => [a] -> Bool
+isPalindrome [] = True
+isPalindrome [_] = True
+isPalindrome (x:xs)
+    | x == lst = isPalindrome middle
+    | otherwise = False
+    where lst = last xs
+          middle = init xs
+--- Solution 2: Check whether the reversed is equal to the original.
+isPalindrome' :: (Eq a) => [a] -> Bool
+isPalindrome' l = and $ map (\(a,b) -> a == b) (zip l (reverse l))

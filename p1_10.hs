@@ -68,3 +68,10 @@ isPalindrome (x:xs)
 --- Solution 2: Check whether the reversed is equal to the original.
 isPalindrome' :: (Eq a) => [a] -> Bool
 isPalindrome' l = and $ map (\(a,b) -> a == b) (zip l (reverse l))
+
+-- Problem 7: Flatten a nested list structure.
+data NestedList a = Elem a | List [NestedList a]
+flatten :: NestedList a -> [a]
+flatten (Elem x) = [x]
+flatten (List []) = []
+flatten (List (x:xs)) = flatten x ++ flatten (List xs)

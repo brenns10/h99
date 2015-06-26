@@ -33,3 +33,7 @@ encodeDirect = foldr helper []
 -- Problem 14: Duplicate elements in a list: [1,2,3]->[1,1,2,2,3,3].
 dupli :: [a] -> [a]
 dupli = concatMap (replicate 2)
+
+-- Problem 15: Replicate the elements in a list the given number of times.
+repli :: [a] -> Int -> [a]
+repli l n = concatMap (replicate n) l

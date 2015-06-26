@@ -29,3 +29,7 @@ encodeDirect = foldr helper []
           helper x acc@((Multiple n y):ys) = if x == y then (Multiple (n + 1) y):ys
                                              else (Single x):acc
           helper x [] = [Single x]
+
+-- Problem 14: Duplicate elements in a list: [1,2,3]->[1,1,2,2,3,3].
+dupli :: [a] -> [a]
+dupli = concatMap (replicate 2)

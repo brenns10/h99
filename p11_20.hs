@@ -66,3 +66,9 @@ slice' l@(x:xs) start stop
     | stop < 1   = []
     | start <= 1 = x:(slice' xs 0 (stop-1))
     | otherwise  = slice' xs (start-1) (stop-1)
+
+-- Problem 19: Rotate a list n places to the left.
+rotate :: [a] -> Int -> [a]
+rotate l n
+       | n >= 0 = take (length l) $ drop n $ cycle l
+       | otherwise = reverse $ rotate (reverse l) (negate n)

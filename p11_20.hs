@@ -53,3 +53,8 @@ split (x:xs) n = ((x:h),r)
 --- Solution 2: take+drop
 split' :: [a] -> Int -> ([a], [a])
 split' l n = (take n l, drop n l)
+
+-- Problem 18: Extract a slice from a list, including both indices, start
+-- indexing at 1.
+slice :: [a] -> Int -> Int -> [a]
+slice list start stop = take (stop-start+1) (drop (start-1) list)

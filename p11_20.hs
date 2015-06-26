@@ -37,3 +37,7 @@ dupli = concatMap (replicate 2)
 -- Problem 15: Replicate the elements in a list the given number of times.
 repli :: [a] -> Int -> [a]
 repli l n = concatMap (replicate n) l
+
+-- Problem 16: Drop every nth element of a list.
+dropEvery :: [a] -> Int -> [a]
+dropEvery l n = map snd $ filter (\(m,x) -> m/=n) $ zip (cycle [1..n]) l

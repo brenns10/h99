@@ -17,3 +17,15 @@ decodeModified :: [RunLength a] -> [a]
 decodeModified l = concatMap decodeChar l
     where decodeChar (Single x) = [x]
           decodeChar (Multiple n x) = replicate n x
+
+-- Problem 13: Run length encoding "direct" (without creating sublists).  I kind
+-- of think my solution to 11 already fits the bill.  Sort of.  There's no step
+-- where I have a list of sublists.  However, I stil do use span to create a
+-- sublist.  So I'll make a nicer implementation.
+encodeDirect :: (Eq a) => [a] -> [RunLength a]
+encodeDirect = foldr helper []
+    where helper x acc@((Single y):ys) = if x == y then (Multiple 2 y):ys
+                                         else (Single x):acc
+          helper x acc@((Multiple n y):ys) = if x == y then (Multiple (n + 1) y):ys
+                                             else (Single x):acc
+          helper x [] = [Single x]

@@ -56,5 +56,13 @@ split' l n = (take n l, drop n l)
 
 -- Problem 18: Extract a slice from a list, including both indices, start
 -- indexing at 1.
+--- Solution 1: take/drop
 slice :: [a] -> Int -> Int -> [a]
 slice list start stop = take (stop-start+1) (drop (start-1) list)
+--- Solution 2: recursive
+slice' :: [a] -> Int -> Int -> [a]
+slice' [] _ _ = []
+slice' l@(x:xs) start stop
+    | stop < 1   = []
+    | start <= 1 = x:(slice' xs 0 (stop-1))
+    | otherwise  = slice' xs (start-1) (stop-1)

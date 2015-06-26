@@ -72,3 +72,14 @@ rotate :: [a] -> Int -> [a]
 rotate l n
        | n >= 0 = take (length l) $ drop n $ cycle l
        | otherwise = reverse $ rotate (reverse l) (negate n)
+
+-- Problem 20: Remove the kth element from a list.
+--- Solution 1: Recursive
+removeAt        :: [a] -> Int -> (a, [a])
+removeAt (x:xs) n
+    | n == 1    = (x, xs)
+    | otherwise = let (a, rem) = removeAt xs (n-1) in (a, x:rem)
+--- Solution 2: partition
+removeAt' :: [a] -> Int -> (a, [a])
+removeAt' l n = (snd (head end), map snd (start ++ (tail end)))
+    where (start, end) = span ((<n) . fst) (zip [1..] l)

@@ -41,3 +41,11 @@ repli l n = concatMap (replicate n) l
 -- Problem 16: Drop every nth element of a list.
 dropEvery :: [a] -> Int -> [a]
 dropEvery l n = map snd $ filter (\(m,x) -> m/=n) $ zip (cycle [1..n]) l
+
+-- Problem 17: Split a list into two parts, where length of first part is given.
+split :: [a] -> Int -> ([a], [a])
+split [] _ = ([], [])
+split l n
+    | n <= 0 = ([], l)
+split (x:xs) n = ((x:h),r)
+    where (h,r) = split xs (n-1)

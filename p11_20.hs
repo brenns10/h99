@@ -14,6 +14,6 @@ encodeModified [] = []
 
 -- Problem 12: Decode modified run-length encoding from problem 11.
 decodeModified :: [RunLength a] -> [a]
-decodeModified l = concat $ map decodeChar l
+decodeModified l = concatMap decodeChar l
     where decodeChar (Single x) = [x]
-          decodeChar (Multiple n x) = take n (repeat x)
+          decodeChar (Multiple n x) = replicate n x
